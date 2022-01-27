@@ -1,19 +1,16 @@
-const http = require('http');
-const PORT = 8080;
+const express = require('express');
+const app = express();
+const PORT = 8080; // default port 8080
 
-// a function which handles requests and sends response
-const requestHandler = function (request, response) {
-  console.log('In requestHandler'); // NEW LINE
-  response.end(
-    `Requested Path: ${request.url}\nRequest Method: ${request.method}`
-  );
+const urlDatabase = {
+  b2xVn2: 'http://www.lighthouselabs.ca',
+  '9sm5xK': 'http://www.google.com',
 };
 
-const server = http.createServer(requestHandler);
-console.log('Server created'); // NEW LINE
-
-server.listen(PORT, () => {
-  console.log(`Server listening on: http://localhost:${PORT}`);
+app.get('/', (req, res) => {
+  res.send('Hello!');
 });
 
-console.log('Last line (after .listen call)'); // NEW LINE
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}!`);
+});
